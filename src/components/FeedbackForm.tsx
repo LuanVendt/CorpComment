@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { MAX_CHARACTERS } from "../lib/constants";
+import { FeedbackFormProps } from "../lib/types";
 
-export default function FeedbackForm() {
+export default function FeedbackForm({ onAddFeedback }: FeedbackFormProps) {
   const [text, setText] = useState("");
 
   const charCount = MAX_CHARACTERS - text.length;
@@ -16,8 +17,25 @@ export default function FeedbackForm() {
     setText(e.target.value);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!text.trim()) {
+      setText("");
+      return;
+    }
+
+    if (!text.includes("#") || !text.split("#")[1].trim()) {
+      return;
+    }
+
+    onAddFeedback(text);
+
+    setText("");
+  };
+
   return (
-    <form className="form">
+    <form onSubmit={handleSubmit} className="form">
       <textarea
         id="feedback-textarea"
         placeholder=""
