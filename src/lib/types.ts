@@ -31,3 +31,7 @@ export type HeaderProps = {
 export type FeedbackFormProps = {
   onAddFeedback: (text: string) => void;
 };
+
+export type HashTagListProps = {
+  companies: string[];
+};

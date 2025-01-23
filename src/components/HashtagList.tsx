@@ -1,17 +1,13 @@
-export default function HashtagList() {
+import { HashTagListProps } from "../lib/types";
+
+export default function HashtagList({ companies }: HashTagListProps) {
   return (
     <ul className="hashtags">
-      <li>
-        <button>#ByteGrad</button>
-      </li>
-
-      <li>
-        <button>#Nike</button>
-      </li>
-
-      <li>
-        <button>#McDonald's</button>
-      </li>
+      {companies.map((company) => (
+        <li key={company}>
+          <button>#{company}</button>
+        </li>
+      ))}
     </ul>
   );
 }

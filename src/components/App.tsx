@@ -10,6 +10,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const companyList = [
+    ...new Set(feedBackItems.map((feedback) => feedback.company)),
+  ];
+
   const handleAddFeedback = (text: string) => {
     const companyName = text
       .split(" ")
@@ -77,7 +81,7 @@ function App() {
         onAddFeedback={handleAddFeedback}
       />
 
-      <HashtagList />
+      <HashtagList companies={companyList} />
     </div>
   );
 }
