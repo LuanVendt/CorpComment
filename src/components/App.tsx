@@ -21,7 +21,7 @@ function App() {
     const newFeedback: TFeedbackItem = {
       id: Date.now().toString(),
       text,
-      companyName: companyName,
+      company: companyName,
       badgeLetter: badgeLetter,
       daysAgo: 0,
       upvoteCount: 0,
@@ -31,6 +31,15 @@ function App() {
       ...prevFeedbackItems,
       newFeedback,
     ]);
+
+    fetch(FEEDBACKS_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFeedback),
+    });
   };
 
   useEffect(() => {
