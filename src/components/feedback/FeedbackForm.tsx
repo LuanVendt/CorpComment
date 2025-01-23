@@ -26,9 +26,13 @@ export default function FeedbackForm({ onAddFeedback }: FeedbackFormProps) {
       return;
     }
 
-    if (!text.includes("#") || !text.split("#")[1].trim() || text.length < 5) {
+    if (
+      !text.includes("#") ||
+      !text.split("#")[1].trim() ||
+      text.trim().length < 5
+    ) {
       setShowInvalidIndicador(true);
-      setTimeout(() => setShowInvalidIndicador(false), 1500);
+
       return;
     } else {
       setShowValidIndicador(true);
