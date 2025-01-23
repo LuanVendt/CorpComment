@@ -11,33 +11,25 @@ export type FeedbackItemProps = {
   feedbackItem: TFeedbackItem;
 };
 
-export type ContainerProps = {
-  feedBackItems: TFeedbackItem[];
-  isLoading: boolean;
-  error: string;
-  onAddFeedback: (text: string) => void;
-};
-
-export type FeedbackListProps = {
-  feedBackItems: TFeedbackItem[];
-  isLoading: boolean;
-  error: string;
-};
-
-export type HeaderProps = {
-  onAddFeedback: (text: string) => void;
-};
-
 export type FeedbackFormProps = {
   onAddFeedback: (text: string) => void;
-};
-
-export type HashTagListProps = {
-  companies: string[];
-  handleSelectCompany: (company: string) => void;
 };
 
 export type HashTagItemProps = {
   company: string;
   onSelectCompany: (company: string) => void;
+};
+
+export type TFeedbackItemsContext = {
+  feedBackItems: TFeedbackItem[];
+  isLoading: boolean;
+  error: string;
+  companyList: string[];
+  onAddFeedback: (text: string) => void;
+  onSelectCompany: (company: string) => void;
+  filteredFeedbackItems: TFeedbackItem[];
+};
+
+export type FeedbackItemsContextProviderProps = {
+  children: React.ReactNode;
 };
