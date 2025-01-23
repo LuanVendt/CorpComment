@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { MAX_CHARACTERS } from "../lib/constants";
-import { FeedbackFormProps } from "../lib/types";
+import { MAX_CHARACTERS } from "../../lib/constants";
+import { FeedbackFormProps } from "../../lib/types";
 
 export default function FeedbackForm({ onAddFeedback }: FeedbackFormProps) {
   const [text, setText] = useState("");
