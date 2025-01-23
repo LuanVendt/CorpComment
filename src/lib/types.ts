@@ -34,8 +34,10 @@ export type FeedbackFormProps = {
 
 export type HashTagListProps = {
   companies: string[];
+  handleSelectCompany: (company: string) => void;
 };
 
 export type HashTagItemProps = {
   company: string;
+  onSelectCompany: (company: string) => void;
 };

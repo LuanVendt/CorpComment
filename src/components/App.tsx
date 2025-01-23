@@ -9,10 +9,27 @@ function App() {
   const [feedBackItems, setFeedBackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedCompany, setSelectedCompany] = useState("");
+
+  const filteredFeedbackItems = selectedCompany
+    ? feedBackItems.filter((feedback) => feedback.company === selectedCompany)
+    : feedBackItems;
 
   const companyList = [
     ...new Set(feedBackItems.map((feedback) => feedback.company)),
   ];
+
+  const handleSelectCompany = (company: string) => {
+    console.log(selectedCompany === company);
+
+    if (selectedCompany === company) {
+      setSelectedCompany("");
+
+      return;
+    }
+
+    setSelectedCompany(company);
+  };
 
   const handleAddFeedback = (text: string) => {
     const companyName = text
@@ -75,13 +92,16 @@ function App() {
       <Footer />
 
       <Container
-        feedBackItems={feedBackItems}
+        feedBackItems={filteredFeedbackItems}
         isLoading={isLoading}
         error={error}
         onAddFeedback={handleAddFeedback}
       />
 
-      <HashtagList companies={companyList} />
+      <HashtagList
+        companies={companyList}
+        handleSelectCompany={handleSelectCompany}
+      />
     </div>
   );
 }
