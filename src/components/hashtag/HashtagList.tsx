@@ -8,7 +8,11 @@ export default function HashtagList({
   return (
     <ul className="hashtags">
       {companies.map((company) => (
-        <HashTagItem company={company} onSelectCompany={handleSelectCompany} />
+        <HashTagItem
+          key={company}
+          company={company}
+          onSelectCompany={handleSelectCompany}
+        />
       ))}
     </ul>
   );
