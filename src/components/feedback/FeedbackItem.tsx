@@ -5,18 +5,20 @@ import { FeedbackItemProps } from "../../lib/types";
 export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
   const [open, setOpen] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(feedbackItem.upvoteCount);
-  const [isUpvoted, setIsUpvoted] = useState(false);
 
   const handleOnClick = () => setOpen((prev) => !prev);
 
-  const handleUpvoteClick = () => {
+  const handleUpvoteClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     setUpvoteCount((prev) => ++prev);
-    setIsUpvoted(true);
+    e.currentTarget.disabled = true;
+    e.stopPropagation();
   };
 
   return (
     <li className={`feedback ${open ? "feedback--expand" : ""}`}>
-      <button onClick={handleUpvoteClick} disabled={isUpvoted}>
+      <button onClick={handleUpvoteClick}>
         <TriangleUpIcon />
         <span>{upvoteCount}</span>
       </button>
