@@ -35,3 +35,7 @@ export type FeedbackFormProps = {
 export type HashTagListProps = {
   companies: string[];
 };
+
+export type HashTagItemProps = {
+  company: string;
+};

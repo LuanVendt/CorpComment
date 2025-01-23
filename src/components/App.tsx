@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FEEDBACKS_URL } from "../lib/constants";
 import { TFeedbackItem } from "../lib/types";
-import HashtagList from "./HashtagList";
+import HashtagList from "./hashtag/HashtagList";
 import Container from "./layout/Container";
 import Footer from "./layout/Footer";
 
