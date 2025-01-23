@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FEEDBACKS_URL } from "../lib/constants";
 import { TFeedbackItem } from "../lib/types";
 import HashtagList from "./hashtag/HashtagList";
@@ -11,17 +11,22 @@ function App() {
   const [error, setError] = useState("");
   const [selectedCompany, setSelectedCompany] = useState("");
 
-  const filteredFeedbackItems = selectedCompany
-    ? feedBackItems.filter((feedback) => feedback.company === selectedCompany)
-    : feedBackItems;
+  const filteredFeedbackItems = useMemo(
+    () =>
+      selectedCompany
+        ? feedBackItems.filter(
+            (feedback) => feedback.company === selectedCompany
+          )
+        : feedBackItems,
+    [feedBackItems, selectedCompany]
+  );
 
-  const companyList = [
-    ...new Set(feedBackItems.map((feedback) => feedback.company)),
-  ];
+  const companyList = useMemo(
+    () => [...new Set(feedBackItems.map((feedback) => feedback.company))],
+    [feedBackItems]
+  );
 
   const handleSelectCompany = (company: string) => {
-    console.log(selectedCompany === company);
-
     if (selectedCompany === company) {
       setSelectedCompany("");
 
