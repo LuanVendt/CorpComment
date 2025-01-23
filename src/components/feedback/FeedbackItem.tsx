@@ -4,14 +4,21 @@ import { FeedbackItemProps } from "../../lib/types";
 
 export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
   const [open, setOpen] = useState(false);
+  const [upvoteCount, setUpvoteCount] = useState(feedbackItem.upvoteCount);
+  const [isUpvoted, setIsUpvoted] = useState(false);
 
   const handleOnClick = () => setOpen((prev) => !prev);
 
+  const handleUpvoteClick = () => {
+    setUpvoteCount((prev) => ++prev);
+    setIsUpvoted(true);
+  };
+
   return (
     <li className={`feedback ${open ? "feedback--expand" : ""}`}>
-      <button onClick={() => console.log("clicou")}>
+      <button onClick={handleUpvoteClick} disabled={isUpvoted}>
         <TriangleUpIcon />
-        <span>{feedbackItem.upvoteCount}</span>
+        <span>{upvoteCount}</span>
       </button>
 
       <div>
