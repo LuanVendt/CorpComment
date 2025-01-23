@@ -2,7 +2,7 @@ export type TFeedbackItem = {
   id: string;
   upvoteCount: number;
   badgeLetter: string;
-  companyName: string;
+  company: string;
   text: string;
   daysAgo: number;
 };
