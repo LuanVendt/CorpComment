@@ -29,6 +29,7 @@ export default function FeedbackForm({ onAddFeedback }: FeedbackFormProps) {
     if (
       !text.includes("#") ||
       !text.split("#")[1].trim() ||
+      text.split("#")[1].trim().length > 15 ||
       text.trim().length < 5
     ) {
       setShowInvalidIndicador(true);
