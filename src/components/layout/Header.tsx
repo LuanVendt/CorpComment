@@ -1,11 +1,11 @@
-import { useFeedbackItemsContext } from "../../hooks/hooks";
+import useFeedbackItemsStore from "../../stores/feedbackItemsStore";
 import FeedbackForm from "../feedback/FeedbackForm";
 import Logo from "../Logo";
 import PageHeading from "../PageHeading";
 import Pattern from "../Pattern";
 
 export default function Header() {
-  const { onAddFeedback } = useFeedbackItemsContext();
+  const onAddFeedback = useFeedbackItemsStore((state) => state.addFeedback);
 
   return (
     <header>
