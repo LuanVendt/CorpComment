@@ -1,14 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
-import { FeedbackItemsContext } from "../hooks/hooks";
+import { useMemo, useState } from "react";
+import { FeedbackItemsContext, useFeedBackItems } from "../hooks/hooks";
 import { FEEDBACKS_URL } from "../lib/constants";
 import { FeedbackItemsContextProviderProps, TFeedbackItem } from "../lib/types";
 
 export default function FeedbackItemsContextProvider({
   children,
 }: FeedbackItemsContextProviderProps) {
-  const [feedBackItems, setFeedBackItems] = useState<TFeedbackItem[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { feedBackItems, setFeedBackItems, isLoading, error } =
+    useFeedBackItems();
+
   const [selectedCompany, setSelectedCompany] = useState("");
 
   const companyList = useMemo(
@@ -67,30 +67,6 @@ export default function FeedbackItemsContextProvider({
 
     setSelectedCompany(company);
   };
-
-  useEffect(() => {
-    const fetchFeedbackItems = async () => {
-      setIsLoading(true);
-
-      try {
-        const response = await fetch(FEEDBACKS_URL);
-
-        if (!response.ok) throw new Error();
-
-        const data = await response.json();
-
-        setFeedBackItems(data.feedbacks);
-
-        setIsLoading(false);
-      } catch (error) {
-        setError("Something went wrong. Please try again later.");
-
-        setIsLoading(false);
-      }
-    };
-
-    fetchFeedbackItems();
-  }, []);
 
   return (
     <FeedbackItemsContext.Provider
