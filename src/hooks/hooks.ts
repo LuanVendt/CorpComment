@@ -2,6 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { FEEDBACKS_URL } from "../lib/constants";
 import { TFeedbackItem, TFeedbackItemsContext } from "../lib/types";
 
+export const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(
+  null
+);
+
 export function useFeedbackItemsContext() {
   const context = useContext(FeedbackItemsContext);
 
@@ -9,10 +13,6 @@ export function useFeedbackItemsContext() {
 
   return context;
 }
-
-export const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(
-  null
-);
 
 export function useFeedBackItems() {
   const [feedBackItems, setFeedBackItems] = useState<TFeedbackItem[]>([]);
